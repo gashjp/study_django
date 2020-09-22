@@ -51,9 +51,8 @@ class Login(auth_views.LoginView):
             self.template_name = 'web/login.html'
         else:
             self.template_name = 'web/login2.html'
-
         return context
-
+        
 class Logout(WebUserLoginRequiredMixin, auth_views.LogoutView):
     pass
 

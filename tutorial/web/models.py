@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 from django.core.validators import EmailValidator
 
+
 class LogMessage(models.Model):
     message = models.CharField(max_length=300)
     log_date = models.DateTimeField("date logged")
@@ -20,7 +21,7 @@ class WebUserManager(UserManager):
             raise ValueError('The given username must be set')
         email = self.normalize_email(email)
         username = self.model.normalize_username(username)
-        webid = self.model.normalize_username(id)
+        webid = self.model.normalize_username(webid)
         user = self.model(username=username, webid=webid, email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
