@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>a</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'web/site.css' %}"/>
+</head>
+
+<body>
+<div class="body-content">
+<p>login</p>
+<form class="form-signin" method="post">{% csrf_token %}
+    {% if form.errors %}
+        <p id="login-fm">Login failed</p>
+    {% endif %}
+    <label id="login-fm">id</label>
+    <input id="login-fm" name="username" type="text">
+    <label id="login-fm">pw</label>
+    <input id="login-fm" name="password" type="password">
+    <button id="login-btn" type="submit" class="btn">login</button>
+</form>
+</div>
+</body>
+</html>

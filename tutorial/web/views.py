@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from web.forms import LogMessageForm
 from web.models import LogMessage
 from django.views.generic import ListView
+from django.contrib.auth import views as auth_views
 
 class HomeListView(ListView):
     """Renders the home page, with a list of all messages."""
@@ -13,6 +14,19 @@ class HomeListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeListView, self).get_context_data(**kwargs)
+        return context
+
+class Login(auth_views.LoginView):
+
+    template_name = 'web/login.html'
+    def get_context_data(self, **kwargs):
+        context = super(auth_views.LoginView, self).get_context_data(**kwargs)
+        flag = self.request.GET.get("flag")
+        if flag:
+            self.template_name = 'web/login.html'
+        else:
+            self.template_name = 'web/login2.html'
+
         return context
 
 def about(request):
